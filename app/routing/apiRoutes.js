@@ -18,7 +18,7 @@ module.exports = function(app) {
     app.post('/api/friends', function(req, res) {
         
         console.log("From apiroutes server: " + req.body.photo);
-        if(req.body.photo !== "") {
+        if(req.body.photo !== "" && req.body.name !== "") {
 
             // add new friend
             friendArray.push(req.body);
@@ -26,7 +26,7 @@ module.exports = function(app) {
             // function that goes through the req & perform calculations
             var usrScore;
             for(var i = 0; i < req.body.scores.length; i++) {
-                usrScore += req.body.scores[i];
+                usrScore = usrScore + req.body.scores[i];
             };
 
             // need a function that goes through the friend array
@@ -34,20 +34,22 @@ module.exports = function(app) {
             // max diff is 50 - 10 = 40
             var closestDiff = 90; 
             // who's my closest friend?
-            var closestFriend = {};
+            var closestFriend;
+            var testVar;
             for(var i = 0; i < friendArray.length; i++) {
 
                 // go through each friend and calculate scores
                 for(var j = 0; j < friendArray[i].scores.length; j++) {
-                    closestScore += friendArray[i].scores[j]; 
+                    closestScore = closestScore + parseInt(friendArray[i].scores[j]);
+                    // testVar = typeof(parseInt(friendArray[i].scores[j]));
                 };
 
                 // after getting the closestScore, evaluate with the usrScore
                 var diff = Math.abs(usrScore - closestScore);
                 if(diff < closestDiff) {
                     closestDiff = diff;
-                    closestFriend = friendArray[i];
-                };
+                }
+                closestFriend = friendArray[i];
                 
             };
 
