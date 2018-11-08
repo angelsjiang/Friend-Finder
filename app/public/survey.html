@@ -194,7 +194,7 @@
             function(data){
                 // SERVER-SIDE info check -- check with server, see if the req info is completed
                 if(data !== false) {
-                    addModal(data.name, data.photo);
+                    addModal(data.name, data.photo); // SOMEHOW THIS STILL NEEDS ME TO CLICK TWICE
                     console.log(data.name);
                     console.log("added successfully");
                 }
@@ -218,7 +218,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <img src="${photo}"/>
+                    <img id="photoinfo" src="${photo}"/>
                 </div>
                 </div>
             </div>
