@@ -20,9 +20,6 @@ module.exports = function(app) {
         console.log("From apiroutes server: " + req.body.photo);
         if(req.body.photo !== "" && req.body.name !== "") {
 
-            // add new friend
-            friendArray.push(req.body);
-
             // function that goes through the req & perform calculations
             var usrScore;
             for(var i = 0; i < req.body.scores.length; i++) {
@@ -53,6 +50,9 @@ module.exports = function(app) {
                 
             };
 
+            // add new friend
+            friendArray.push(req.body);
+            
             // return true statement
             res.json(closestFriend);
 
