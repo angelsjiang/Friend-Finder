@@ -201,25 +201,33 @@
                 parseInt($(".custom-select.3").val()),
                 parseInt($(".custom-select.4").val()),
                 parseInt($(".custom-select.5").val()),
+                parseInt($(".custom-select.1").val()),
+                parseInt($(".custom-select.2").val()),
+                parseInt($(".custom-select.3").val()),
+                parseInt($(".custom-select.4").val()),
+                parseInt($(".custom-select.5").val()),
             ]
         };
 
         // console.log(newFriend);
         // Check if the required fields are entered
+        console.log("data is ");
         $.post("/api/friends", newFriend, 
             function(data){
+                console.log("data is ", data);
                 // SERVER-SIDE info check -- check with server, see if the req info is completed
-                if(data !== false) {
+                if(data === false) {
+                    console.log(data, " data info");
+                    alert("Please complete required fields.");
+                    console.log("Please complete required fields.");
+                }
+                else {
+                    console.log("????");
                     $("#exampleModalCenter").modal("show");
                     $("#modalCenterTitle").text(data.name);
                     $("#photoinfo").attr("src", data.photo);
-                    console.log(data.name);
+                    console.log(data);
                     console.log("added successfully");
-                }
-                else {
-                    console.log(data + " data info");
-                    alert("Please complete required fields.");
-                    console.log("Please complete required fields.");
                 }
         });
     });
